@@ -31,70 +31,70 @@ extern char **environ;
 
 /** STRING FUNCTION */
 
-char *_strtok(char *str, const char *tok);
-unsigned int check_delim(char c, const char *str);
-char *_strncpy(char *dest, char *src, int n);
-int _strlen(char *s);
-int _putchar(char c);
-int _atoi(char *s);
-void _puts(char *str);
-int _strcmp(char *s1, char *s2);
-int _isalpha(int c);
-void array_rev(char *arr, int len);
-int intlen(int num);
-char *_itoa(unsigned int n);
-char *_strcat(char *dest, char *src);
-char *_strcpy(char *dest, char *src);
-char *_strchr(char *s, char c);
-int _strncmp(const char *s1, const char *s2, size_t n);
-char *_strdup(char *str);
+char *_strtok(char *, const char *);
+unsigned int check_delim(char, const char *);
+char *_strncpy(char *, char *, int);
+int _strlen(char *);
+int _putchar(char);
+int _atoi(char *);
+void _puts(char *);
+int _strcmp(char *, char *);
+int _isalpha(int);
+void array_rev(char *, int);
+int intlen(int);
+char *_itoa(unsigned int);
+char *_strcat(char *, char *);
+char *_strcpy(char *, char *);
+char *_strchr(char *, char);
+int _strncmp(const char *, const char *, size_t);
+char *_strdup(char *);
 
 /** MEMORIE  MANGMENT */
 
-void free_env(char **env);
-void *fill_an_array(void *a, int el, unsigned int len);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void *_calloc(unsigned int size);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void free_all(char **input, char *line);
+void free_env(char **);
+void *fill_an_array(void *, int, unsigned int);
+char *_memcpy(char *, char *, unsigned int);
+void *_calloc(unsigned int);
+void *_realloc(void *, unsigned int, unsigned int);
+void free_all(char **, char *);
 
 /** INPUT Function */
 
 void prompt(void);
-void signal_to_handel(int sig);
+void signal_to_handel(int);
 char *_getline(void);
 
 /** Command parser and extractor*/
 
-int path_cmd(char **line);
-char *_getenv(char *name);
-char **parse_cmd(char *cmd);
-int handle_builtin(char **cmd, int er);
-void read_file(char *filename, char **argv);
-char *build(char *token, char *value);
-int check_builtin(char **cmd);
-void creat_envi(char **envi);
-int check_cmd(char **tokens, char *line, int count, char **argv);
-void treat_file(char *line, int counter, FILE *fd, char **argv);
-void exit_bul_for_file(char **cmd, char *line, FILE *fd);
+int path_cmd(char **);
+char *_getenv(char *);
+char **parse_cmd(char *);
+int handle_builtin(char **, int);
+void read_file(char *, char **);
+char *build(char *, char *);
+int check_builtin(char **);
+void creat_envi(char **);
+int check_cmd(char **, char *, int, char **);
+void treat_file(char *, int, FILE *, char **);
+void exit_bul_for_file(char **, char *, FILE *);
 
 /** BUL FUNC*/
 
-void hashtag_handle(char *buff);
-int history(char *input);
-int history_dis(char **cmd, int er);
-int dis_env(char **cmd, int er);
-int change_dir(char **cmd, int er);
-int display_help(char **cmd, int er);
-int echo_bul(char **cmd, int er);
-void  exit_bul(char **cmd, char *input, char **argv, int c);
-int print_echo(char **cmd);
+void hashtag_handle(char *);
+int history(char *);
+int history_dis(char **, int);
+int dis_env(char **, int);
+int change_dir(char **, int);
+int display_help(char **, int);
+int echo_bul(char **, int);
+void  exit_bul(char **, char *, char **, int);
+int print_echo(char **);
 
 /** error handle and Printer */
-void print_number(unsigned int n);
-void print_number_in(int n);
-void print_error(char *line, int c, char **argv);
-void _prerror(char **argv, int c, char **cmd);
+void print_number(unsigned int);
+void print_number_in(int);
+void print_error(char *, int, char **);
+void _prerror(char **, int, char **);
 
 
 /**
