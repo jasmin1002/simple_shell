@@ -6,12 +6,12 @@
  */
 void print_number(unsigned int n)
 {
-	unsigned int x = n;
+unsigned int x = n;
 
-	if ((x / 10) > 0)
-		print_number(x / 10);
+if ((x / 10) > 0)
+print_number(x / 10);
 
-	_putchar(x % 10 + '0');
+_putchar(x % 10 + '0');
 }
 /**
  * print_number_in -Print Number Putchar
@@ -20,15 +20,15 @@ void print_number(unsigned int n)
  */
 void print_number_in(int n)
 {
-	unsigned int x = n;
+unsigned int x = n;
 
-	if (n < 0)
-	{
-		_putchar('-');
-		x = -x;
-	}
-	if ((x / 10) > 0)
-		print_number(x / 10);
+if (n < 0)
+{
+_putchar('-');
+x = -x;
+}
+if ((x / 10) > 0)
+print_number(x / 10);
 
-	_putchar(x % 10 + '0');
+_putchar(x % 10 + '0');
 }
