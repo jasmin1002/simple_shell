@@ -105,8 +105,8 @@ void _prerror(char **, int, char **);
 
 typedef struct  bulltin
 {
-	char *command;
-	int (*fun)(char **line, int er);
+char *command;
+int (*fun)(char **line, int er);
 } bul_t;
 
 #endif
