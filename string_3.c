@@ -1,96 +1,29 @@
 #include "shell.h"
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * rev_string - reverses a string.
+ * @s: input string.
+ * Return: no return.
  */
-int _putchar(char c)
+void rev_string(char *s)
 {
-return (write(1, &c, 1));
-}
-/**
- * _strncpy - copie a string
- * @dest:char
- *  @src:char
- * @n:int
- * Return:char
- */
+int count = 0, i, j;
+char *str, temp;
 
-char *_strncpy(char *dest, char *src, int n)
+while (count >= 0)
 {
-int i;
+if (s[count] == '\0')
+break;
+count++;
+}
+str = s;
 
-i = 0;
-while (i < n && *(src + i))
+for (i = 0; i < (count - 1); i++)
 {
-*(dest + i) = *(src + i);
-i++;
-}
-while (i < n)
+for (j = i + 1; j > 0; j--)
 {
-*(dest + i) = '\0';
-i++;
+temp = *(str + j);
+*(str + j) = *(str + (j - 1));
+*(str + (j - 1)) = temp;
 }
-return (dest);
 }
-
-/**
- * _strlen - lenght of string
- * @s:char
- * Return:int
- */
-
-int _strlen(char *s)
-{
-int i;
-
-for (i = 0; s[i] != '\0'; i++)
-{
-continue;
-}
-return (i);
-}
-
-/**
- * _atoi - convert to a int
- * @s:string
- * Return:int
- */
-int _atoi(char *s)
-{
-int i, j, n, x;
-
-i = n = 0;
-x = 1;
-while ((s[i] < '0' || s[i] > '9') && (s[i] != '\0'))
-{
-if (s[i] == '-')
-x *= -1;
-i++;
-}
-j = i;
-while ((s[j] >= '0') && (s[j] <= '9'))
-{
-n = (n * 10) + x * ((s[j]) - '0');
-j++;
-}
-return (n);
-}
-/**
- * _puts - print a string
- * @str:pointer char
- * return:void
- */
-void _puts(char *str)
-{
-int i;
-
-for (i = 0; str[i] != '\0'; i++)
-{
-_putchar(str[i]);
-}
-_putchar('\n');
-return;
 }

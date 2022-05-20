@@ -1,105 +1,129 @@
 #include "shell.h"
 /**
- * _strcmp - Compare Two String
- * @s1:String 1
- * @s2:String 2
- * Return: 0 If Identical Otherwise How Much Diffrent
+ * _strdup - duplicates a str in the heap memory.
+ * @s: Type char pointer str
+ * Return: duplicated str
  */
-int _strcmp(char *s1, char *s2)
+char *_strdup(const char *s)
 {
-int cmp = 0, i, len1, len2;
-len1 = _strlen(s1);
-len2 = _strlen(s2);
+char *new;
+size_t len;
 
-if (s1 == NULL || s2 == NULL)
-return (1);
-if (len1 != len2)
-return (1);
-for (i = 0; s1[i]; i++)
+len = _strlen(s);
+new = malloc(sizeof(char) * (len + 1));
+if (new == NULL)
+return (NULL);
+_memcpy(new, s, len + 1);
+return (new);
+}
+
+/**
+ * _strlen - Returns the lenght of a string.
+ * @s: Type char pointer
+ * Return: Always 0.
+ */
+int _strlen(const char *s)
 {
-if (s1[i] != s2[i])
+int len;
+
+for (len = 0; s[len] != 0; len++)
 {
-cmp = s1[i] - s2[i];
+}
+return (len);
+}
+
+/**
+ * cmp_chars - compare chars of strings
+ * @str: input string.
+ * @delim: delimiter.
+ *
+ * Return: 1 if are equals, 0 if not.
+ */
+int cmp_chars(char str[], const char *delim)
+{
+unsigned int i, j, k;
+
+for (i = 0, k = 0; str[i]; i++)
+{
+for (j = 0; delim[j]; j++)
+{
+if (str[i] == delim[j])
+{
+k++;
 break;
 }
-else
-continue;
 }
-return (cmp);
 }
-/**
- * _isalpha - Check if Alphabtic
- *@c: Character
- * Return: 1 If True 0 If Not
- */
-int _isalpha(int c)
-{
-if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-{
+if (i == k)
 return (1);
-}
-else
-{
 return (0);
 }
-}
-/**
- * _itoa - Convert Integer To Char
- * @n: Int To Convert
- * Return: Char Pointer
- */
-char *_itoa(unsigned int n)
-{
-int len = 0, i = 0;
-char *s;
 
-len = intlen(n);
-s = malloc(len + 1);
-if (!s)
+/**
+ * _strtok - splits a string by some delimiter.
+ * @str: input string.
+ * @delim: delimiter.
+ *
+ * Return: string splited.
+ */
+char *_strtok(char str[], const char *delim)
+{
+static char *splitted, *str_end;
+char *str_start;
+unsigned int i, bool;
+
+if (str != NULL)
+{
+if (cmp_chars(str, delim))
 return (NULL);
-*s = '\0';
-while (n / 10)
-{
-s[i] = (n % 10) + '0';
-n /= 10;
-i++;
+splitted = str; /*Store first address*/
+i = _strlen(str);
+str_end = &str[i]; /*Store last address*/
 }
-s[i] = (n % 10) + '0';
-array_rev(s, len);
-s[i + 1] = '\0';
-return (s);
-}
-/**
- *  array_rev - Reverse Array
- * @arr:Array To Reverse
- * @len:Length Of Array
- * Return: Void(Reverse Array)
- */
-void array_rev(char *arr, int len)
-{
-int i;
-char tmp;
+str_start = splitted;
+if (str_start == str_end) /*Reaching the end*/
+return (NULL);
 
-for (i = 0; i < (len / 2); i++)
-{
-tmp = arr[i];
-arr[i] = arr[(len - 1) - i];
-arr[(len - 1) - i] = tmp;
-}
-}
-/**
- * intlen - Determine Length Of Int
- * @num: Given Int
- * Return: Length Of Int
- */
-int intlen(int num)
-{
-int len = 0;
+for (bool = 0; *splitted; splitted++)
 
-while (num != 0)
 {
-len++;
-num /= 10;
+		/*Breaking loop finding the next token*/
+if (splitted != str_start)
+if (*splitted && *(splitted - 1) == '\0')
+break;
+		/*Replacing delimiter for null char*/
+for (i = 0; delim[i]; i++)
+{
+if (*splitted == delim[i])
+{
+*splitted = '\0';
+if (splitted == str_start)
+str_start++;
+break;
 }
-`return (len);
+}
+if (bool == 0 && *splitted) /*Str != Delim*/
+bool = 1;
+}
+if (bool == 0) /*Str == Delim*/
+return (NULL);
+return (str_start);
+}
+
+/**
+ * _isdigit - defines if string passed is a number
+ *
+ * @s: input string
+ * Return: 1 if string is a number. 0 in other case.
+ */
+int _isdigit(const char *s)
+{
+unsigned int i;
+
+for (i = 0; s[i]; i++)
+{
+if (s[i] < 48 || s[i] > 57)
+return (0);
+}
+return (1);
 }
